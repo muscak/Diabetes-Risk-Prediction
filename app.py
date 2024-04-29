@@ -33,5 +33,14 @@ def predict_api():
         prediction = "Clear"
     return jsonify(prediction)
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.form
+    print(data)
+    data_df = pd.DataFrame(list(data.items(1)), columns=['Age', 'Gender', 'Polyuria', 'Polydipsia', 'sudden weight loss', 'weakness', 'Polyphagia', 'Genital thrush', 'visual blurring', 'Itching', 'Irritability', 'delayed healing', 'partial paresis', 'muscle stiffness', 'Alopecia', 'Obesity'])
+    transformed_data = preprocessor.transform(data_df)
+    output = model.predict(transformed_data.squeeze().reshape(1, -1))[0]
+    return render_template("home.html", prediction_text=f"The result is {output}")
+
 if __name__ == "__main__":
     app.run(debug=True)

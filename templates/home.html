@@ -1,1 +1,44 @@
-<h1>This is home page!</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ML API</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <img src="../Images/dataset-cover.jpeg">
+    <h1>Diabetes Risk Prediction</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+     <form action="{{ url_for('predict')}}"method="post">
+        <input type="text" name="Age" placeholder="Age" required="required" /><br>
+        <input type="text" name="Gender" placeholder="Gender (Male/Female)" required="required" /><br>
+        <input type="text" name="Polyuria" placeholder="Polyuria (Yes/No)" required="required" /><br>
+        <input type="text" name="Polydipsia" placeholder="Polydipsia (Yes/No)" required="required" /><br>
+        <input type="text" name="SuddenWeightLoss" placeholder="Sudden weight loss (Yes/No)" required="required" /><br>
+        <input type="text" name="Weakness" placeholder="Weakness (Yes/No)" required="required" /><br>
+        <input type="text" name="Polyphagia" placeholder="Polyphagia (Yes/No)" required="required" /><br>
+        <input type="text" name="GenitalThrush" placeholder="Genital thrush (Yes/No)" required="required" /><br>
+        <input type="text" name="VisualBlurring" placeholder="Visual blurring (Yes/No)" required="required" /><br>
+        <input type="text" name="Itching" placeholder="Itching (Yes/No)" required="required" /><br>
+        <input type="text" name="Irritability" placeholder="Irritability (Yes/No)" required="required" /><br>
+        <input type="text" name="DelayedHealing" placeholder="Delayed healing (Yes/No)" required="required" /><br>
+        <input type="text" name="PartialParesis" placeholder="Partial paresis (Yes/No)" required="required" /><br>
+        <input type="text" name="MuscleStiffness" placeholder="Muscle stiffness (Yes/No)" required="required" /><br>
+        <input type="text" name="Alopecia" placeholder="Alopecia (Yes/No)" required="required" /><br>
+        <input type="text" name="Obesity" placeholder="Obesity (Yes/No)" required="required" /><br>
+        
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    {{prediction_text}}
+
+
+</body>
+
+</html>
