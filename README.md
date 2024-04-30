@@ -1,5 +1,5 @@
 # Diabetes Risk Prediction
-<img src='Images/dataset-cover.jpeg' />
+<img src='static/images/dataset-cover.jpeg' />
 Prediction of diabetes based on the signs and symptoms using machine learning algorithms.
 
 ## Problem Definition
@@ -8,4 +8,4 @@ Diabetes mellitus, often known simply as diabetes, is a group of common endocrin
 
 This is a binary classification problem and our aim, in this study, is to come up with a supervised ML model which predicts diabetes for a person who provides the information with high accuracy. 
 
-<img src='Images/project.png' />
+<img src='static/images/project.png' />

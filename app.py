@@ -1,5 +1,5 @@
 import pickle
-from flask import Flask, request, app, jsonify, url_for, render_template, json
+from flask import Flask, request, app, jsonify, url_for, render_template, json, send_from_directory
 
 import numpy as np
 import pandas as pd
@@ -15,17 +15,18 @@ model = pickle.load(open('Models/model.pkl', 'rb'))
 def home():
     return render_template('home.html')
 
+@app.route('/images/<filename>')
+def get_image(filename):
+    return send_from_directory('static/images', filename)
+
 # Create the api end point for prediction
 @app.route('/predict_api', methods=['POST'])
 def predict_api():
     data = request.json
-    print(data)
     # Convert JSON to DataFrame
     data_df = pd.DataFrame([data])
     transformed_data = preprocessor.transform(data_df)
-    print(transformed_data.squeeze())
     output = model.predict(transformed_data.squeeze().reshape(1, -1))
-    print(output[0])
     prediction = ""
     if output[0] == 1:
         prediction = "Diabetes"
@@ -35,12 +36,15 @@ def predict_api():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.form
-    print(data)
-    data_df = pd.DataFrame(list(data.items(1)), columns=['Age', 'Gender', 'Polyuria', 'Polydipsia', 'sudden weight loss', 'weakness', 'Polyphagia', 'Genital thrush', 'visual blurring', 'Itching', 'Irritability', 'delayed healing', 'partial paresis', 'muscle stiffness', 'Alopecia', 'Obesity'])
+    data = dict(request.form)
+    data_df = pd.DataFrame([data])
     transformed_data = preprocessor.transform(data_df)
     output = model.predict(transformed_data.squeeze().reshape(1, -1))[0]
-    return render_template("home.html", prediction_text=f"The result is {output}")
+    if output == 1:
+        prediction = "Diabetes"
+    else:
+        prediction = "Clear"
+    return render_template("home.html", prediction_text=f"The result is {prediction}")
 
 if __name__ == "__main__":
     app.run(debug=True)
