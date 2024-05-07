@@ -1,4 +1,5 @@
 import pickle
+from os import environ
 
 import pandas as pd
 from flask import Flask, request, jsonify, render_template, send_from_directory
@@ -51,4 +52,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True, host='0.0.0.0', port=environ.get("PORT", 10000))
