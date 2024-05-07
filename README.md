@@ -16,3 +16,14 @@ This is a binary classification problem and our aim, in this study, is to come u
 - pandas
 - numpy
 - pickle
+
+To install the required libraries, run the following command:
+```bash
+pip install -r requirements.txt
+```
+
+### How to run it locally
+1. Run `docker build -t diabetes-prediction .`
+2. Run `docker run -p 8000:8000 diabetes-prediction`
+3. Open your browser and go to `http://localhost:8000/`
+
