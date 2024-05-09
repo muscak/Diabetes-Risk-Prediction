@@ -23,7 +23,19 @@ pip install -r requirements.txt
 ```
 
 ### How to run it locally
+
+terminal
+```bash
+uvicorn main:asgi_app --port 10000
+```
+
+ide
+```bash
+Create a python run configuration and choose the main.py file
+```
+
+docker
 1. Run `docker build -t diabetes-prediction .`
-2. Run `docker run -p 8000:8000 diabetes-prediction`
-3. Open your browser and go to `http://localhost:8000/`
+2. Run `docker run -p 10000:10000 diabetes-prediction`
+3. Open your browser and go to `http://localhost:10000/`
 

@@ -14,7 +14,8 @@ ADD . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 10000 available to the world outside this container
-EXPOSE 10000
+ENV PORT=10000
+EXPOSE $PORT
 
-# Run app.py when the container launches
-CMD ["gunicorn", "-w", "4", "-b", ":10000", "app:app"]
+# Run main.py when the container launches
+CMD uvicorn main:asgi_app --host 0.0.0.0 --port $PORT

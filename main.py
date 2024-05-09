@@ -1,10 +1,14 @@
 import pickle
-from os import environ
 
 import pandas as pd
+from asgiref.wsgi import WsgiToAsgi
 from flask import Flask, request, jsonify, render_template, send_from_directory
 
+from UvicornWrapper import UvicornWrapper
+
 app = Flask(__name__)
+asgi_app = WsgiToAsgi(app)
+
 # Load the preprocessor
 with open('Models/data_preprocessor.pkl', 'rb') as preprocessor_file:
     preprocessor = pickle.load(preprocessor_file)
@@ -51,5 +55,7 @@ def predict():
     return render_template("home.html", prediction_text=f"The result is {prediction}")
 
 
-if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=environ.get("PORT", 10000))
+if __name__ == '__main__':
+    # Only for local development. To run the app from IDE.
+    uvicorn = UvicornWrapper(asgi_app)
+    uvicorn.run()
