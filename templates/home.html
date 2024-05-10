@@ -12,34 +12,100 @@
 </head>
 
 <body>
-
-    <img src="/images/dataset-cover.jpeg" width="30%" />
-    <h1>Diabetes Risk Prediction</h1>
-     <!-- Main Input For Receiving Query to our ML -->
-     <form action="{{ url_for('predict')}}"method="post">
-        <input type="text" name="Age" placeholder="Age" required="required" /><br>
-        <input type="text" name="Gender" placeholder="Gender (Male/Female)" required="required" /><br>
-        <input type="text" name="Polyuria" placeholder="Polyuria (Yes/No)" required="required" /><br>
-        <input type="text" name="Polydipsia" placeholder="Polydipsia (Yes/No)" required="required" /><br>
-        <input type="text" name="sudden weight loss" placeholder="Sudden weight loss (Yes/No)" required="required" /><br>
-        <input type="text" name="weakness" placeholder="Weakness (Yes/No)" required="required" /><br>
-        <input type="text" name="Polyphagia" placeholder="Polyphagia (Yes/No)" required="required" /><br>
-        <input type="text" name="Genital thrush" placeholder="Genital thrush (Yes/No)" required="required" /><br>
-        <input type="text" name="visual blurring" placeholder="Visual blurring (Yes/No)" required="required" /><br>
-        <input type="text" name="Itching" placeholder="Itching (Yes/No)" required="required" /><br>
-        <input type="text" name="Irritability" placeholder="Irritability (Yes/No)" required="required" /><br>
-        <input type="text" name="delayed healing" placeholder="Delayed healing (Yes/No)" required="required" /><br>
-        <input type="text" name="partial paresis" placeholder="Partial paresis (Yes/No)" required="required" /><br>
-        <input type="text" name="muscle stiffness" placeholder="Muscle stiffness (Yes/No)" required="required" /><br>
-        <input type="text" name="Alopecia" placeholder="Alopecia (Yes/No)" required="required" /><br>
-        <input type="text" name="Obesity" placeholder="Obesity (Yes/No)" required="required" /><br>
+    <div class="header">
+        <h1>Diabetes Risk Prediction</h1>
+    </div>
+    <div class="flex-container">
+        <div class="flex-child">
+            <!-- Main Input For Receiving Query to our ML -->
+            <form action="{{ url_for('predict')}}"method="post">
+                <input type="text" name="Age" placeholder="Age" required="required" /><br>
+                <select name="Gender" id="Gender" required="required">
+                    <option value="">--Please choose: Gender--</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select><br>
+                <select name="Polyuria" id="Polyuria" required="required">
+                    <option value="">--Please choose: Polyuria--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Polydipsia" id="Polydipsia" required="required">
+                    <option value="">--Please choose: Polydipsia--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="sudden weight loss" id="sudden weight loss" required="required">
+                    <option value="">--Please choose: sudden weight loss--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="weakness" id="weakness" required="required">
+                    <option value="">--Please choose: Weakness--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Polyphagia" id="Polyphagia" required="required">
+                    <option value="">--Please choose: Polyphagia--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Genital thrush" id="Genital thrush" required="required">
+                    <option value="">--Please choose: Genital thrush--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="visual blurring" id="visual blurring" required="required">
+                    <option value="">--Please choose: Visual blurring--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Itching" id="Itching" required="required">
+                    <option value="">--Please choose: Itching--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Irritability" id="Irritability" required="required">
+                    <option value="">--Please choose: Irritability--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="delayed healing" id="delayed healing" required="required">
+                    <option value="">--Please choose: Delayed healing--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="partial paresis" id="partial paresis" required="required">
+                    <option value="">--Please choose: Partial paresis--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="muscle stiffness" id="muscle stiffness" required="required">
+                    <option value="">--Please choose: Muscle stiffness--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Alopecia" id="Alopecia" required="required">
+                    <option value="">--Please choose: Alopecia--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+                <select name="Obesity" id="Obesity" required="required">
+                    <option value="">--Please choose: Obesity--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+            
+                <button type="submit">Predict</button>    
+            </form>
+        </div>
         
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
-
-    {{prediction_text}}
-
-
+        <div class="flex-child">
+            <h3>{{prediction_text}}</h3>
+        </div>
+        
+      </div>
+        
 </body>
 
 </html>

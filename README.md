@@ -1,5 +1,6 @@
 # Diabetes Risk Prediction
-<img src='static/images/dataset-cover.jpeg' />
+<img src='static/images/dataset-cover.jpeg' width="50%"/>
+
 Prediction of diabetes based on the signs and symptoms using machine learning algorithms.
 
 ## Problem Definition
@@ -15,7 +16,7 @@ This is a binary classification problem and our aim, in this study, is to come u
 - sklearn
 - pandas
 - numpy
-- pickle
+- uvicorn
 
 To install the required libraries, run the following command:
 ```bash
@@ -24,18 +25,43 @@ pip install -r requirements.txt
 
 ### How to run it locally
 
-terminal
+#### Terminal
 ```bash
 uvicorn main:asgi_app --port 10000
 ```
 
-ide
+#### IDE
 ```bash
 Create a python run configuration and choose the main.py file
 ```
 
-docker
+#### Docker
 1. Run `docker build -t diabetes-prediction .`
 2. Run `docker run -p 10000:10000 diabetes-prediction`
 3. Open your browser and go to `http://localhost:10000/`
+
+#### Online
+App is also available online: https://diabetes-risk-prediction.onrender.com/
+
+Or as API: https://diabetes-risk-prediction.onrender.com/predict_api
+```JSON
+{
+    "Gender": "Female",
+    "Polyuria": "No",
+    "Polydipsia": "No",
+    "sudden weight loss": "No",
+    "weakness": "Yes",
+    "Polyphagia": "No",
+    "Genital thrush": "No",
+    "visual blurring": "Yes",
+    "Itching": "Yes",
+    "Irritability": "No",
+    "delayed healing": "Yes",
+    "partial paresis": "No",
+    "muscle stiffness": "No",
+    "Alopecia": "Yes",
+    "Obesity": "No",
+    "Age": 48
+}
+```
 

@@ -1,3 +1,49 @@
-h1 {
-    font-family: 'Hind', cursive;
-  }
+body {
+  font-family: 'Hind', cursive;
+}
+
+img {
+  width: 40%;
+  opacity: 30%;
+}
+
+.flex-container {
+  display: flex;
+}
+.header{
+  background-image: url("../images/dataset-cover.jpeg");
+  background-size: 40%;  /* Optional: Adjust background size */
+  background-position: center; 
+  background-repeat: no-repeat; 
+  padding-top: 5%;
+  padding-bottom: 5%;
+  position: relative;
+}
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);  /* Set overlay opacity */
+  opacity: 0.3;  /* Redundant for some browsers, but can be included for better compatibility */
+}
+.flex-child {
+  flex: 1;
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+} 
+
+input[type="text"]{
+  width:240px;
+}
+select{
+  width:248px;
+}
+
+button{
+  width:248px;
+}

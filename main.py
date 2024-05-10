@@ -33,12 +33,14 @@ def predict_api():
     # Convert JSON to DataFrame
     data_df = pd.DataFrame([data])
     transformed_data = preprocessor.transform(data_df)
-    output = model.predict(transformed_data.squeeze().reshape(1, -1))
+    output = model.predict(transformed_data.squeeze().reshape(1, -1))[0]
     prediction = ""
-    if output[0] == 1:
-        prediction = "Diabetes"
+    output_pro = model.predict_proba(transformed_data.squeeze().reshape(1, -1))[0]
+    
+    if output == 1:
+        prediction = f"The person has Diabetes with {output_pro[1]*100:.2f}% of chance"
     else:
-        prediction = "Clear"
+        prediction = f"The person is Clear with {output_pro[0]*100:.2f}% of chance"
     return jsonify(prediction)
 
 
@@ -48,11 +50,13 @@ def predict():
     data_df = pd.DataFrame([data])
     transformed_data = preprocessor.transform(data_df)
     output = model.predict(transformed_data.squeeze().reshape(1, -1))[0]
+    prediction = ""
+    output_pro = model.predict_proba(transformed_data.squeeze().reshape(1, -1))[0]
     if output == 1:
-        prediction = "Diabetes"
+        prediction = f"The person has Diabetes with {output_pro[1]*100:.2f}% of chance"
     else:
-        prediction = "Clear"
-    return render_template("home.html", prediction_text=f"The result is {prediction}")
+        prediction = f"The person is Clear with {output_pro[0]*100:.2f}% of chance"
+    return render_template("home.html", prediction_text=prediction)
 
 
 if __name__ == '__main__':
